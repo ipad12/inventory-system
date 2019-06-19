@@ -1,0 +1,14 @@
+{
+  "name": "inventory-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "{"
+  },
+  "keywords": [
+    "https://github.com/ipad12/inventory-system.git"
+  ],
+  "author": "Abner Patrick D. Padilla",
+  "license": "ISC"
+}
