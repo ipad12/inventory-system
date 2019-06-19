@@ -30,7 +30,6 @@ module.exports = {
                             return res.status(500).send(err);
                         }
                         // send the player's details to the database
-                                                console.log(name + " " + qty + " " + amount);
                         let query = "INSERT INTO `items` (name, qty, amount) VALUES ('" + name + "', '" + qty + "', '" + amount + "')";
                         db.query(query, (err, result) => {
                             if (err) {
