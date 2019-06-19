@@ -11,15 +11,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% items.forEach((item, index) => { %>
+                    <% items.forEach((items, index) => { %>
                         <tr>
-                            <th scope="row"><%= item.id %></th>
-                            <td><img src="/assets/img/<%= player.image %>" class="rounded-circle player-img" alt=""></td>
-                            <td><%= item.qty %></td>
-                            <td><%= item.amount %></td>
+                            <th scope="row"><%= items.id %></th>
+                            <td><%= items.name %></td>
+                            <td><%= items.qty %></td>
+                            <td><%= items.amount %></td>
                             <td>
-                                <a href="/edit/<%= item.id %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">Edit</a>
-                                <a href="/delete/<%= item.id %>" class="btn btn-sm btn-danger">Delete</a>
+                                <a href="/edit/<%= items.id %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                                <a href="/delete/<%= items.id %>" class="btn btn-sm btn-danger">Delete</a>
                             </td>
                         </tr>
                     <% }) %>
