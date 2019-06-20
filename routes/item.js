@@ -13,7 +13,7 @@ module.exports = {
         let qty = req.body.qty;
         let amount = req.body.amount;
 
-        let nameQuery = "SELECT * FROM `items` WHERE item_name = '" + name + "'";
+        let nameQuery = `SELECT * FROM items WHERE item_name = '${name}'`;
 
         db.query(nameQuery, (err, result) => {
             if (err) {
@@ -39,7 +39,7 @@ module.exports = {
     },
     editItemPage: (req, res) => {
         let id = req.params.id;
-        let query = "SELECT * FROM `items` WHERE id = '" + id + "' ";
+        let query = `SELECT * FROM items WHERE id = '${id}'`;
         db.query(query, (err, result) => {
             if (err) {
                 return res.status(500).send(err);
@@ -57,7 +57,7 @@ module.exports = {
         let qty = req.body.qty;
         let amount = req.body.amount;
 
-        let query = "UPDATE `items` SET `item_name` = '" + name + "', `qty` = '" + qty + "', `amount` = '" + amount + "' WHERE `items`.`id` = '" + id + "'";
+        let query = `UPDATE items SET item_name = '${name}' , qty = '${qty}' , amount = '${amount}'  WHERE items.id = '${id}'`;
         db.query(query, (err, result) => {
             if (err) {
                 return res.status(500).send(err);
@@ -67,7 +67,7 @@ module.exports = {
     },
     deleteItem: (req, res) => {
         let id = req.params.id;
-        let deleteItemQuery = 'DELETE FROM items WHERE id = "' + id + '"';
+        let deleteItemQuery = `DELETE FROM items WHERE id = '${id}'`;
             db.query(deleteItemQuery, (err, result) => {
                     if (err) {
                         return res.status(500).send(err);
