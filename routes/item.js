@@ -13,7 +13,7 @@ module.exports = {
         let qty = req.body.qty;
         let amount = req.body.amount;
 
-        let nameQuery = "SELECT * FROM `items` WHERE name = '" + name + "'";
+        let nameQuery = "SELECT * FROM `items` WHERE item_name = '" + name + "'";
 
         db.query(nameQuery, (err, result) => {
             if (err) {
@@ -26,19 +26,15 @@ module.exports = {
                     title: "Welcome to Inventory | Add a new item"
                 });
             } else {
-                        if (err) {
-                            return res.status(500).send(err);
-                        }
-                        // send the player's details to the database
-                        let query = "INSERT INTO `items` (name, qty, amount) VALUES ('" + name + "', '" + qty + "', '" + amount + "')";
+                        let query = `INSERT INTO items (item_name, qty, amount) VALUES ('${name}', '${qty}', '${amount}');`;
                         db.query(query, (err, result) => {
                             if (err) {
                                 return res.status(500).send(err);
                             }
                             res.redirect('/');
                         });
-                } 
-            
+                }
+
         });
     },
     editItemPage: (req, res) => {
@@ -61,7 +57,7 @@ module.exports = {
         let qty = req.body.qty;
         let amount = req.body.amount;
 
-        let query = "UPDATE `items` SET `name` = '" + name + "', `qty` = '" + qty + "', `amount` = '" + amount + "' WHERE `items`.`id` = '" + id + "'";
+        let query = "UPDATE `items` SET `item_name` = '" + name + "', `qty` = '" + qty + "', `amount` = '" + amount + "' WHERE `items`.`id` = '" + id + "'";
         db.query(query, (err, result) => {
             if (err) {
                 return res.status(500).send(err);
@@ -72,7 +68,7 @@ module.exports = {
     deleteItem: (req, res) => {
         let id = req.params.id;
         let deleteItemQuery = 'DELETE FROM items WHERE id = "' + id + '"';
-            db.query(deleteUserQuery, (err, result) => {
+            db.query(deleteItemQuery, (err, result) => {
                     if (err) {
                         return res.status(500).send(err);
                     }

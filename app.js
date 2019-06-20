@@ -1,11 +1,8 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const ejs = require('ejs');
-const mysql = require('mysql');
-const path = require('path');
-
-
-const app = express();
+var express = require('express');
+var bodyParser = require('body-parser');
+var mysql = require('mysql');
+var path = require('path');
+var app = express();
 
 const {getHomePage} = require('./routes/index');
 const {addItemPage, addItem, deleteItem, editItem, editItemPage} = require('./routes/item');
@@ -26,12 +23,12 @@ db.connect((err) => {
 });
 global.db = db;
 
-app.set('port', process.env.port || port); 
-app.set('views', __dirname + '/views'); 
-app.set('view engine', 'ejs'); 
+app.set('port', process.env.port || port);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json()); 
-app.use(express.static(path.join(__dirname, 'public'))); 
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', getHomePage);
 app.get('/add', addItemPage);
@@ -41,5 +38,5 @@ app.post('/add', addItem);
 app.post('/edit/:id', editItem);
 
 app.listen(port, () => {
-    console.log('Server is up and running on port: ' + port);
+    console.log(`Server is up and running on port:  ${port}`);
 });
