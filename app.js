@@ -6,9 +6,7 @@ var app = express();
 
 const {getHomePage} = require('./routes/index');
 const {addItemPage, addItem, deleteItem, editItem, editItemPage} = require('./routes/item');
-
-const port = 1234;
-
+const port = 3000;
 const db = mysql.createConnection ({
     host: 'localhost',
     user: 'root',
@@ -26,16 +24,16 @@ global.db = db;
 app.set('port', process.env.port || port);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', getHomePage);
 app.get('/add', addItemPage);
 app.get('/edit/:id', editItemPage);
-app.get('/delete/:id', deleteItem);
+app.delete('/delete/:id', deleteItem);
 app.post('/add', addItem);
-app.post('/edit/:id', editItem);
+app.put('/edit/:id', editItem);
 
 app.listen(port, () => {
     console.log(`Server is up and running on port:  ${port}`);
