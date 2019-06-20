@@ -31,9 +31,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', getHomePage);
 app.get('/add', addItemPage);
 app.get('/edit/:id', editItemPage);
-app.delete('/delete/:id', deleteItem);
+app.get('/delete/:id', deleteItem);
 app.post('/add', addItem);
-app.put('/edit/:id', editItem);
+app.post('/edit/:id', editItem);
 
 app.listen(port, () => {
     console.log(`Server is up and running on port:  ${port}`);
